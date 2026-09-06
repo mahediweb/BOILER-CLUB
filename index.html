@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        try {
+          var activeFetch = window.fetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return activeFetch;
+            },
+            set: function(newFetch) {
+              activeFetch = newFetch;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          try {
+            if (typeof Window !== 'undefined' && Window.prototype) {
+              var protoFetch = Window.prototype.fetch;
+              Object.defineProperty(Window.prototype, 'fetch', {
+                get: function() {
+                  return protoFetch;
+                },
+                set: function(newFetch) {
+                  protoFetch = newFetch;
+                },
+                configurable: true,
+                enumerable: true
+              });
+            }
+          } catch (e2) {}
+        }
+      })();
+    </script>
+    <title>বাংলাদেশ বয়লার পরিচারক পরিষদ | Bangladesh Boiler Operators Parishad</title>
+    <meta name="description" content="জাতীয় পর্যায়ের সংগঠন বাংলাদেশ বয়লার পরিচারক পরিষদ (Bangladesh Boiler Operators Parishad)-এর পূর্ণাঙ্গ ওয়েব পোর্টাল ও ম্যানেজমেন্ট সিস্টেম।" />
+    <meta property="og:title" content="বাংলাদেশ বয়লার পরিচারক পরিষদ | Bangladesh Boiler Operators Parishad" />
+    <meta property="og:description" content="জাতীয় পর্যায়ের সংগঠন বাংলাদেশ বয়লার পরিচারক পরিষদ (Bangladesh Boiler Operators Parishad)-এর পূর্ণাঙ্গ ওয়েব পোর্টাল ও ম্যানেজমেন্ট সিস্টেম।" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-['Hind_Siliguri',sans-serif] antialiased selection:bg-amber-100 selection:text-amber-900">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

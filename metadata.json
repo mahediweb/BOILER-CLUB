@@ -1,0 +1,8 @@
+{
+  "name": "বাংলাদেশ বয়লার পরিচারক পরিষদ",
+  "description": "জাতীয় পর্যায়ের সংগঠন বাংলাদেশ বয়লার পরিচারক পরিষদ (Bangladesh Boiler Operators Parishad)-এর পূর্ণাঙ্গ ওয়েব পোর্টাল ও ম্যানেজমেন্ট সিস্টেম।",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
