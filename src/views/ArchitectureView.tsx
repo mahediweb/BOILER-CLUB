@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 
 export const ArchitectureView: React.FC = () => {
-  const [activeSec, setActiveSec] = useState<'ddl' | 'modules' | 'security' | 'api'>('ddl');
+  const [activeSec, setActiveSec] = useState<'ddl' | 'modules' | 'security' | 'wordpress'>('ddl');
   const [copied, setCopied] = useState(false);
 
   const tablesList = [
@@ -157,6 +157,14 @@ CREATE TABLE IF NOT EXISTS \`wp_bbp_audit_logs\` (
           ১৯টি মূল মডিউল কাঠামো
         </button>
         <button
+          onClick={() => setActiveSec('wordpress')}
+          className={`px-4 py-2 rounded-xl transition-all ${
+            activeSec === 'wordpress' ? 'bg-blue-950 text-amber-400' : 'bg-white border text-slate-600'
+          }`}
+        >
+          ওয়ার্ডপ্রেস ও সিপ্যানেল ডিপ্লয়মেন্ট নির্দেশিকা
+        </button>
+        <button
           onClick={() => setActiveSec('security')}
           className={`px-4 py-2 rounded-xl transition-all ${
             activeSec === 'security' ? 'bg-blue-950 text-amber-400' : 'bg-white border text-slate-600'
@@ -263,6 +271,61 @@ CREATE TABLE IF NOT EXISTS \`wp_bbp_audit_logs\` (
               <p className="text-amber-800">
                 প্রতিটি সদস্য কার্ড এবং মানি রসিদে ডিজিটাল ভেরিফিকেশন হ্যাশ এনকোড করা কিউআর কোড সংযুক্ত থাকে, যা স্ক্যান করে কেন্দ্রীয় ডাটাবেজের সাথে সত্যতা নিশ্চিত করা যায়।
               </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 4. WORDPRESS & CPANEL DEPLOYMENT GUIDE */}
+      {activeSec === 'wordpress' && (
+        <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-6 shadow-xs">
+          <div>
+            <span className="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded-md">
+              সমস্যা সমাধান গাইড
+            </span>
+            <h3 className="text-xl font-bold text-slate-900 mt-2">
+              ওয়ার্ডপ্রেস "Broken Themes" (public, src) সমাধান ও সঠিক ডিপ্লয়মেন্ট
+            </h3>
+            <p className="text-xs text-slate-600 mt-1">
+              ওয়ার্ডপ্রেসের Appearance &gt; Themes-এ "public" এবং "src" ফোল্ডার দুটি ব্রোকেন থিম হিসেবে দেখালে কীভাবে এক ক্লিকে সমাধান করবেন এবং এই ওয়েবসাইটটি লাইভ সার্ভারে সঠিকভাবে চালাবেন।
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="p-4 bg-red-50 border border-red-200 rounded-xl space-y-2">
+              <div className="flex items-center gap-2 text-red-900 font-bold text-sm">
+                <span>❌ সমস্যা কেন হয়েছে?</span>
+              </div>
+              <p className="text-xs text-red-800 leading-relaxed">
+                ওয়ার্ডপ্রেসের <code>wp-content/themes/</code> ডিরেক্টরির ভেতরে ভুলেও <code>public</code> এবং <code>src</code> ফোল্ডার আপলোড হয়ে গেছে। ওয়ার্ডপ্রেস প্রতিটি সাবফোল্ডারকে থিম মনে করে, আর সেগুলোর ভেতর <code>style.css</code> না পেয়ে 'Broken Theme' দেখায়।
+              </p>
+            </div>
+
+            <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl space-y-2">
+              <div className="flex items-center gap-2 text-emerald-900 font-bold text-sm">
+                <span>✅ তাৎক্ষণিক সমাধান (২টি ক্লিক)</span>
+              </div>
+              <ol className="text-xs text-emerald-900 list-decimal list-inside space-y-1">
+                <li>ওয়ার্ডপ্রেস ড্যাশবোর্ডে <strong>Appearance &gt; Themes</strong> এ যান।</li>
+                <li>নিচে <code>public</code> এর পাশে লাল <strong>Delete</strong> বাটনে ক্লিক করুন।</li>
+                <li>নিচে <code>src</code> এর পাশে লাল <strong>Delete</strong> বাটনে ক্লিক করুন।</li>
+                <li>ক্লিক করলেই ব্রোকেন থিম দুটি স্থায়ীভাবে মুছে যাবে!</li>
+              </ol>
+            </div>
+          </div>
+
+          <div className="p-4 bg-slate-900 text-slate-200 rounded-xl space-y-3">
+            <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
+              <Terminal className="w-4 h-4" />
+              <span>cPanel বা হোস্টিংয়ে ওয়েবসাইটটি লাইভ করার সঠিক নিয়ম</span>
+            </div>
+            <p className="text-xs text-slate-300">
+              এটি একটি আধুনিক আল্ট্রা-ফাস্ট React/Vite ওয়েব অ্যাপ্লিকেশন। এটি cPanel-এ আপলোড করতে:
+            </p>
+            <div className="bg-slate-950 p-3 rounded-lg font-mono text-[11px] text-emerald-400 space-y-1">
+              <p>১. আপনার cPanel File Manager &gt; <strong>public_html</strong> ফোল্ডারে যান।</p>
+              <p>২. এই অ্যাপের বিল্ড করা <strong>dist</strong> ফোল্ডারের ভেতরের সমস্ত ফাইল (assets ফোল্ডার, index.html এবং .htaccess) সরাসরি public_html-এ আপলোড করুন।</p>
+              <p>৩. সাথে সাথে আপনার ডোমেইনে সম্পূর্ণ ওয়েবসাইটটি হাই-স্পিডে লাইভ কাজ করবে!</p>
             </div>
           </div>
         </div>

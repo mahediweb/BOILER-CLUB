@@ -13,6 +13,7 @@ import {
   Bell, 
   ExternalLink 
 } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface HeaderProps {
   currentTab: string;
@@ -119,31 +120,29 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Main Header Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo & Org Title */}
           <div 
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 cursor-pointer group select-none"
+            className="flex items-center gap-3.5 cursor-pointer group select-none"
           >
-            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center border-2 border-[#d4af37] shadow-sm shrink-0">
-              <Flame className="w-5 h-5 text-[#001f3f]" />
-            </div>
+            <Logo size="lg" className="w-12 h-12 sm:w-14 sm:h-14 transition-transform group-hover:scale-105" />
             <div>
-              <h1 className="text-base sm:text-lg font-bold leading-none text-white tracking-tight">
+              <h1 className="text-lg sm:text-2xl font-extrabold leading-tight text-white tracking-tight">
                 বাংলাদেশ বয়লার পরিচারক পরিষদ
               </h1>
-              <p className="text-[10px] tracking-widest uppercase text-[#d4af37] font-semibold mt-1">
+              <p className="text-xs sm:text-xs tracking-wider uppercase text-[#d4af37] font-semibold mt-0.5">
                 Bangladesh Boiler Operators Parishad
               </p>
             </div>
           </div>
 
           {/* Quick Header CTA Action Buttons */}
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-3">
             <button
               id="header-search-btn"
               onClick={openSearchModal}
-              className="p-1.5 text-slate-300 hover:text-white hover:bg-[#002b5b] rounded transition-colors"
+              className="p-2.5 text-slate-300 hover:text-white hover:bg-[#002b5b] rounded-xl transition-colors border border-slate-700/60"
               title="খুঁজুন (সদস্য, নোটিশ, ডকুমেন্ট)"
             >
               <Search className="w-4 h-4" />
@@ -152,26 +151,26 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               id="header-member-portal-btn"
               onClick={() => handleNavClick('member-portal')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded font-bold text-xs transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all shadow-sm ${
                 currentTab === 'member-portal'
                   ? 'bg-white text-[#001f3f]'
                   : 'bg-[#d4af37] text-[#001f3f] hover:brightness-110'
               }`}
             >
-              <UserCheck className="w-3.5 h-3.5" />
+              <UserCheck className="w-4 h-4" />
               <span>লগইন / পোর্টাল</span>
             </button>
 
             <button
               id="header-admin-dashboard-btn"
               onClick={() => handleNavClick('admin')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded font-bold text-xs transition-all border ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all border shadow-sm ${
                 currentTab === 'admin'
                   ? 'bg-amber-500 text-slate-950 border-amber-400'
                   : 'bg-[#00152b] text-[#d4af37] hover:bg-[#002b5b] border-[#d4af37]/40'
               }`}
             >
-              <LayoutDashboard className="w-3.5 h-3.5 text-[#d4af37]" />
+              <LayoutDashboard className="w-4 h-4 text-[#d4af37]" />
               <span>অ্যাডমিন প্যানেল</span>
             </button>
           </div>
@@ -181,35 +180,37 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               id="header-mobile-search-btn"
               onClick={openSearchModal}
-              className="p-1.5 text-slate-200 hover:bg-[#002b5b] rounded"
+              className="p-2 text-slate-200 hover:bg-[#002b5b] rounded-lg border border-slate-700/60"
+              aria-label="Search"
             >
               <Search className="w-5 h-5" />
             </button>
             <button
               id="header-mobile-menu-btn"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1.5 text-slate-200 hover:bg-[#002b5b] rounded focus:outline-none"
+              className="p-2 text-slate-200 hover:bg-[#002b5b] rounded-lg border border-slate-700/60 focus:outline-none"
+              aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-6 h-6 text-amber-400" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Primary Navigation Bar (Desktop) */}
-      <nav className="hidden lg:block bg-[#00152b] border-t border-[#002b5b] text-slate-300">
+      {/* Primary Navigation Bar (Desktop) - Enhanced Size & Typography */}
+      <nav className="hidden lg:block bg-[#00152b] border-t border-[#002b5b] text-slate-200 shadow-inner">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <ul className="flex items-center space-x-1 py-1">
+          <div className="flex items-center justify-between py-2">
+            <ul className="flex items-center flex-wrap gap-1.5 xl:gap-2">
               {navItems.map((item) => (
                 <li key={item.id}>
                   <button
                     id={`nav-item-${item.id}`}
                     onClick={() => handleNavClick(item.id)}
-                    className={`px-2.5 py-1.5 text-xs font-semibold rounded transition-colors ${
+                    className={`px-3.5 py-2 text-sm xl:text-[15px] font-bold rounded-lg transition-all ${
                       currentTab === item.id
-                        ? 'bg-[#002b5b] text-white border-b-2 border-[#d4af37]'
-                        : 'hover:text-[#d4af37] text-slate-200 hover:bg-[#002b5b]/50'
+                        ? 'bg-[#002b5b] text-[#d4af37] shadow-sm ring-1 ring-[#d4af37]/50 border-b-2 border-[#d4af37]'
+                        : 'text-slate-200 hover:text-[#d4af37] hover:bg-[#002b5b]/60'
                     }`}
                   >
                     {item.label}
@@ -218,57 +219,68 @@ export const Header: React.FC<HeaderProps> = ({
               ))}
             </ul>
 
-            <div className="flex items-center space-x-2 py-1">
+            <div className="flex items-center space-x-2 shrink-0 pl-2">
               <button
                 onClick={() => handleNavClick('contact')}
-                className="bg-[#d4af37] hover:brightness-110 text-[#001f3f] px-3 py-1 rounded font-bold text-xs transition-colors flex items-center gap-1"
+                className="bg-gradient-to-r from-[#d4af37] to-amber-500 hover:brightness-110 text-[#001f3f] px-4 py-2 rounded-xl font-extrabold text-sm transition-all shadow flex items-center gap-1.5"
               >
-                <span>অনলাইন মেম্বারশিপ আবেদন</span>
+                <span>অনলাইন আবেদন</span>
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer Navigation - Full Touch-Friendly & Larger Text */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#00152b] text-white border-t border-slate-800 px-4 pt-3 pb-6 space-y-2 shadow-2xl">
-          <div className="grid grid-cols-2 gap-2 pb-3 border-b border-slate-800">
+        <div className="lg:hidden bg-[#00152b] text-white border-t-2 border-[#d4af37]/40 px-4 pt-4 pb-8 space-y-3 shadow-2xl animate-in slide-in-from-top-2 duration-200">
+          <div className="grid grid-cols-2 gap-3 pb-3 border-b border-slate-800">
             <button
               onClick={() => handleNavClick('admin')}
-              className="w-full flex items-center justify-center gap-2 bg-[#d4af37] text-[#001f3f] font-bold py-2 px-3 rounded text-xs"
+              className="w-full flex items-center justify-center gap-2 bg-[#d4af37] hover:bg-amber-400 text-[#001f3f] font-bold py-3 px-3 rounded-xl text-sm shadow"
             >
               <LayoutDashboard className="w-4 h-4" />
-              অ্যাডমিন ড্যাশবোর্ড
+              <span>অ্যাডমিন ড্যাশবোর্ড</span>
             </button>
             <button
               onClick={() => handleNavClick('member-portal')}
-              className="w-full flex items-center justify-center gap-2 bg-[#002b5b] text-white font-semibold py-2 px-3 rounded text-xs border border-slate-700"
+              className="w-full flex items-center justify-center gap-2 bg-[#002b5b] hover:bg-[#003875] text-white font-bold py-3 px-3 rounded-xl text-sm border border-slate-700 shadow"
             >
-              <UserCheck className="w-4 h-4" />
-              সদস্য পোর্টাল
+              <UserCheck className="w-4 h-4 text-[#d4af37]" />
+              <span>সদস্য পোর্টাল</span>
             </button>
           </div>
 
-          <ul className="space-y-1 pt-1">
+          <ul className="space-y-1.5 pt-1 max-h-[60vh] overflow-y-auto pr-1">
             {navItems.map((item) => (
               <li key={item.id}>
                 <button
                   onClick={() => handleNavClick(item.id)}
-                  className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
+                  className={`w-full text-left px-4 py-3 rounded-xl text-base font-bold transition-all flex items-center justify-between ${
                     currentTab === item.id
-                      ? 'bg-[#002b5b] text-[#d4af37] font-bold border-l-4 border-[#d4af37]'
-                      : 'text-slate-200 hover:bg-[#002b5b]'
+                      ? 'bg-[#002b5b] text-[#d4af37] border-l-4 border-[#d4af37] shadow-inner'
+                      : 'text-slate-200 hover:bg-[#002b5b]/60 active:bg-[#002b5b]'
                   }`}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {currentTab === item.id && (
+                    <span className="w-2 h-2 rounded-full bg-[#d4af37]" />
+                  )}
                 </button>
               </li>
             ))}
             <li className="pt-2">
               <button
+                onClick={() => handleNavClick('contact')}
+                className="w-full text-center px-4 py-3 rounded-xl text-sm font-extrabold bg-[#d4af37] text-[#001f3f] shadow"
+              >
+                অনলাইন মেম্বারশিপ আবেদন
+              </button>
+            </li>
+            <li className="pt-1">
+              <button
                 onClick={() => handleNavClick('architecture')}
-                className="w-full text-left px-3 py-2 rounded text-sm bg-[#002b5b] text-[#d4af37] font-semibold flex items-center gap-2 border border-slate-700"
+                className="w-full text-left px-4 py-2.5 rounded-xl text-xs sm:text-sm bg-[#002b5b]/70 text-[#d4af37] font-semibold flex items-center gap-2 border border-slate-800"
               >
                 <FileCode className="w-4 h-4 text-[#d4af37]" />
                 আর্কিটেকচার ও ১৯ রিকোয়ারমেন্টস

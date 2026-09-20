@@ -9,9 +9,14 @@ import {
   CheckCircle2, 
   Copy, 
   Check, 
-  ExternalLink 
+  ExternalLink,
+  Calendar,
+  Award,
+  RefreshCw,
+  Clock
 } from 'lucide-react';
 import { QRCodeSVG, QRCodeCanvas } from 'qrcode.react';
+import { Logo } from './Logo';
 
 interface MemberCardModalProps {
   member: Member | null;
@@ -122,10 +127,8 @@ export const MemberCardModal: React.FC<MemberCardModalProps> = ({ member, onClos
               {/* Header */}
               <div className="text-center pb-2 border-b border-[#d4af37]/40 relative z-10">
                 <div className="flex items-center justify-center gap-1.5 mb-1">
-                  <div className="w-7 h-7 rounded-full bg-white border border-[#d4af37] text-[#001f3f] flex items-center justify-center font-bold">
-                    <Flame className="w-4 h-4" />
-                  </div>
-                  <span className="text-[10px] font-bold text-[#d4af37] tracking-wider">গণপ্রজাতন্ত্রী বাংলাদেশ</span>
+                  <Logo size="sm" className="w-8 h-8" />
+                  <span className="text-[10px] font-bold text-[#d4af37] tracking-wider">পেশাজীবী সংগঠন</span>
                 </div>
                 <h4 className="text-xs font-bold text-white leading-tight">বাংলাদেশ বয়লার পরিচারক পরিষদ</h4>
                 <p className="text-[9px] text-slate-300 tracking-tight">Bangladesh Boiler Operators Parishad</p>
@@ -212,11 +215,67 @@ export const MemberCardModal: React.FC<MemberCardModalProps> = ({ member, onClos
               </div>
 
               {/* Detailed Member Info */}
-              <div className="space-y-2 text-[10px] my-auto py-2">
+              <div className="space-y-1.5 text-[10px] my-auto py-1">
+                {/* Visual Vertical Timeline of Membership Lifecycle */}
+                <div className="bg-slate-950/70 p-2 rounded-lg border border-slate-800">
+                  <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-800">
+                    <span className="text-[9px] font-bold text-[#d4af37] flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-[#d4af37]" />
+                      মেম্বারশিপ মাইলস্টোন টাইমলাইন
+                    </span>
+                    <span className="text-[8px] text-emerald-400 font-medium">সক্রিয় সদস্য</span>
+                  </div>
+
+                  {/* Vertical Timeline Steps */}
+                  <div className="relative pl-3 space-y-1.5 before:absolute before:left-[5px] before:top-1.5 before:bottom-1.5 before:w-0.5 before:bg-slate-700">
+                    {/* Step 1: Application Date */}
+                    <div className="relative flex items-center justify-between text-[8.5px]">
+                      <div className="flex items-center gap-1.5">
+                        <span className="absolute -left-3 w-2 h-2 rounded-full bg-blue-500 border border-slate-900 ring-2 ring-slate-800" />
+                        <span className="text-slate-300 flex items-center gap-1">
+                          <Calendar className="w-2.5 h-2.5 text-blue-400" />
+                          আবেদনের তারিখ:
+                        </span>
+                      </div>
+                      <span className="font-mono text-blue-300 font-semibold">
+                        {member.applicationDate || '২০১৫-১২-০৫'}
+                      </span>
+                    </div>
+
+                    {/* Step 2: Approval Date */}
+                    <div className="relative flex items-center justify-between text-[8.5px]">
+                      <div className="flex items-center gap-1.5">
+                        <span className="absolute -left-3 w-2 h-2 rounded-full bg-emerald-500 border border-slate-900 ring-2 ring-slate-800" />
+                        <span className="text-slate-300 flex items-center gap-1">
+                          <Award className="w-2.5 h-2.5 text-emerald-400" />
+                          অনুমোদনের তারিখ:
+                        </span>
+                      </div>
+                      <span className="font-mono text-emerald-300 font-semibold">
+                        {member.approvalDate || member.joiningDate || '২০১৬-০১-১০'}
+                      </span>
+                    </div>
+
+                    {/* Step 3: Last Renewal Date */}
+                    <div className="relative flex items-center justify-between text-[8.5px]">
+                      <div className="flex items-center gap-1.5">
+                        <span className="absolute -left-3 w-2 h-2 rounded-full bg-amber-400 border border-slate-900 ring-2 ring-slate-800" />
+                        <span className="text-slate-300 flex items-center gap-1">
+                          <RefreshCw className="w-2.5 h-2.5 text-amber-400" />
+                          সর্বশেষ নবায়ন:
+                        </span>
+                      </div>
+                      <span className="font-mono text-amber-300 font-semibold">
+                        {member.lastRenewalDate || '২০২৪-০১-১৫'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="bg-slate-800/80 p-2 rounded-lg border border-slate-700 space-y-1">
                   <div className="flex justify-between">
                     <span className="text-slate-400">পিতার নাম:</span>
-                    <span className="text-slate-200">{member.fatherName}</span>
+                    <span className="text-slate-200 truncate max-w-[180px]">{member.fatherName}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-400">রক্তের গ্রুপ:</span>
@@ -236,39 +295,38 @@ export const MemberCardModal: React.FC<MemberCardModalProps> = ({ member, onClos
                   </div>
                 </div>
 
-                <div className="bg-amber-950/30 border border-amber-800/50 p-2 rounded-lg space-y-0.5">
-                  <span className="text-[9px] font-bold text-amber-300 block">জরুরি প্রয়োজনে (Emergency):</span>
-                  <div className="flex justify-between text-slate-300">
+                <div className="bg-amber-950/30 border border-amber-800/50 p-1.5 rounded-lg space-y-0.5">
+                  <span className="text-[8.5px] font-bold text-amber-300 block">জরুরি প্রয়োজনে (Emergency):</span>
+                  <div className="flex justify-between text-slate-300 text-[8.5px]">
                     <span>{member.emergencyContact?.name || 'অভিভাবক'} ({member.emergencyContact?.relation || 'জরুরি'}):</span>
                     <span className="font-mono text-amber-200">{member.emergencyContact?.phone || member.mobile}</span>
                   </div>
                 </div>
 
-                <div className="bg-slate-950/70 p-2 rounded border border-slate-800 flex items-center justify-between gap-2">
+                <div className="bg-slate-950/70 p-1.5 rounded border border-slate-800 flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
                     <div className="bg-white p-0.5 rounded shrink-0">
                       <QRCodeSVG 
                         value={profileUrl}
-                        size={32}
+                        size={28}
                         level="L"
                         bgColor="#FFFFFF"
                         fgColor="#000000"
                       />
                     </div>
-                    <div className="text-[8px] text-slate-300 leading-tight">
+                    <div className="text-[7.5px] text-slate-300 leading-tight">
                       <span className="text-[#d4af37] font-bold block">ই-ভেরিফিকেশন কোড</span>
-                      <span className="font-mono text-slate-400 text-[7.5px]">{member.memberId}</span>
+                      <span className="font-mono text-slate-400 text-[7px]">{member.memberId}</span>
                     </div>
                   </div>
-                  <div className="text-right text-[8px] text-emerald-400 font-semibold">
-                    <span>স্ট্যাটাস: সক্রিয়</span>
+                  <div className="text-right text-[7.5px] text-emerald-400 font-semibold">
+                    <span>লাইসেন্স: {member.boilerClass?.split(' ')[0] || '১ম শ্রেণি'}</span>
                   </div>
                 </div>
 
-                <div className="text-[8px] text-slate-400 leading-relaxed space-y-1 bg-slate-950/60 p-2 rounded border border-slate-800">
-                  <p>১. এই পরিচয়পত্রটি বাংলাদেশ বয়লার পরিচারক পরিষদের মূল্যবান সম্পত্তি।</p>
-                  <p>২. কার্ডটি হস্তান্তরযোগ্য নয় এবং শিল্পস্থলে সর্বদা সাথে বহনীয়।</p>
-                  <p>৩. কার্ডটি হারিয়ে গেলে অবিলম্বে নিকটস্থ থানা এবং কেন্দ্রীয় দপ্তরে অবহিত করুন।</p>
+                <div className="text-[7.5px] text-slate-400 leading-tight space-y-0.5 bg-slate-950/60 p-1.5 rounded border border-slate-800">
+                  <p>১. এই কার্ডটি বাংলাদেশ বয়লার পরিচারক পরিষদের সম্পত্তি ও হস্তান্তরযোগ্য নয়।</p>
+                  <p>২. কার্ড হারিয়ে গেলে অবিলম্বে কেন্দ্রীয় দপ্তরে অবহিত করুন।</p>
                 </div>
               </div>
 

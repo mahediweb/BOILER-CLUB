@@ -159,7 +159,7 @@ export const DocumentsView: React.FC<DocumentsViewProps> = ({ documents }) => {
                 <FileText className="w-16 h-16 text-blue-900 mx-auto" />
                 <p className="text-sm font-bold text-slate-800">অফিশিয়াল মুদ্রিত ডিজিটাল সংস্করণ</p>
                 <p className="text-xs text-slate-500 max-w-md mx-auto">
-                  এই নথিতে পরিষদ ও গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের সংশ্লিষ্ট দপ্তর কর্তৃক জারিকৃত অফিসিয়াল সিলমোহর ও অনুমোদন বিদ্যমান।
+                  এই নথিতে পরিষদের অফিসিয়াল সিলমোহর ও অনুমোদন বিদ্যমান।
                 </p>
                 <button
                   onClick={() => {

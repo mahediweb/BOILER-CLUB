@@ -23,6 +23,7 @@ import {
   ChevronLeft
 } from 'lucide-react';
 import { Member, Notice, NewsItem, CommitteeMember } from '../types';
+import { Logo } from '../components/Logo';
 
 interface HomeViewProps {
   setCurrentTab: (tab: string) => void;
@@ -92,12 +93,17 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
             <div className="max-w-3xl space-y-6">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 border border-amber-500/40 px-3.5 py-1.5 rounded-full text-xs font-semibold backdrop-blur-xs">
-                <Flame className="w-4 h-4 text-amber-400 animate-pulse" />
-                <span>{heroSlides[activeHeroSlide].badge}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                <span className="text-slate-300 font-normal">স্থাপিত: ২০১৬</span>
+              {/* Official Organization Brand Strip */}
+              <div className="flex items-center gap-3.5 bg-slate-900/80 border border-[#d4af37]/40 p-2.5 rounded-2xl max-w-fit backdrop-blur-md shadow-lg">
+                <Logo size="lg" className="w-12 h-12 sm:w-14 sm:h-14" />
+                <div>
+                  <div className="inline-flex items-center gap-2 text-[#d4af37] text-xs font-bold">
+                    <span>বাংলাদেশ বয়লার পরিচারক পরিষদ</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span className="text-slate-300 font-normal">স্থাপিত: ০১ জানুয়ারি ২০২২</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300">দক্ষতা ও নিরাপত্তায় নিবেদিত • পেশাজীবী সংগঠন</p>
+                </div>
               </div>
 
               {/* Headline */}
@@ -311,7 +317,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 বাংলাদেশ বয়লার পরিচারক পরিষদ: শিল্পের প্রাণশক্তি ও সুরক্ষার বিশ্বস্ত অভিভাবক
               </h2>
               <p className="text-sm text-slate-300 leading-relaxed">
-                ২০১৬ সালে প্রতিষ্ঠিত ‘বাংলাদেশ বয়লার পরিচারক পরিষদ’ গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের নিয়ম মেনে নিবন্ধিত একটি অরাজনৈতিক, জাতীয় পর্যায়ের পেশাজীবী সংগঠন। দেশের টেক্সটাইল, বিদ্যুৎ উৎপাদন, ফার্টিলাইজার, কেমিক্যাল, ফার্মাসিউটিক্যালস, সিমেন্ট, পেপার এবং ভারী শিল্প কারখানার উচ্চচাপ বয়লারের নিরাপদ পরিচালনা ও জাতীয় উৎপাদন নির্বিঘ্ন রাখতে আমাদের সদস্যরা দিনরাত কাজ করছেন।
+                ২০১৬ সালে প্রতিষ্ঠিত ‘বাংলাদেশ বয়লার পরিচারক পরিষদ’ দেশের বয়লার পরিচালকদের একটি অরাজনৈতিক, স্বাধীন ও নিবন্ধিত পেশাজীবী সংগঠন। দেশের টেক্সটাইল, বিদ্যুৎ উৎপাদন, ফার্টিলাইজার, কেমিক্যাল, ফার্মাসিউটিক্যালস, সিমেন্ট, পেপার এবং ভারী শিল্প কারখানার উচ্চচাপ বয়লারের নিরাপদ পরিচালনা ও শিল্প উৎপাদন নির্বিঘ্ন রাখতে আমাদের সদস্যরা দিনরাত কাজ করছেন।
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">

@@ -13,8 +13,12 @@ import {
   CheckCircle2,
   AlertCircle,
   Phone,
-  Printer
+  Printer,
+  TrendingUp,
+  Award,
+  ChevronRight
 } from 'lucide-react';
+import { MemberProgressDashboard } from '../components/MemberProgressDashboard';
 
 interface MemberPortalViewProps {
   members: Member[];
@@ -28,7 +32,7 @@ export const MemberPortalView: React.FC<MemberPortalViewProps> = ({
   const [memberIdInput, setMemberIdInput] = useState('BBOP-2024-001');
   const [passwordInput, setPasswordInput] = useState('123456');
   const [loggedInMember, setLoggedInMember] = useState<Member | null>(members[0] || null);
-  const [activeTab, setActiveTab] = useState<'profile' | 'fees' | 'card' | 'service'>('profile');
+  const [activeTab, setActiveTab] = useState<'profile' | 'progress' | 'fees' | 'card' | 'service'>('progress');
 
   // Subscription payment simulation state
   const [payFeeMonth, setPayFeeMonth] = useState('অক্টোবর ২০২৬');
@@ -165,29 +169,49 @@ export const MemberPortalView: React.FC<MemberPortalViewProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5">
+          <button
+            onClick={() => setActiveTab('progress')}
+            className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm ${
+              activeTab === 'progress'
+                ? 'bg-[#d4af37] text-slate-950 ring-2 ring-amber-300'
+                : 'bg-[#001f3f] text-[#d4af37] hover:bg-blue-900 border border-[#d4af37]/40'
+            }`}
+          >
+            <TrendingUp className="w-4 h-4 text-[#d4af37]" />
+            <span>অগ্রগতি ও প্রশিক্ষণ ড্যাশবোর্ড</span>
+          </button>
           <button
             onClick={() => onOpenCardModal(loggedInMember)}
-            className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow transition-colors"
+            className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow transition-colors"
           >
             <IdCard className="w-4 h-4" />
-            <span>স্মার্ট আইডি কার্ড দেখুন</span>
+            <span>স্মার্ট আইডি কার্ড</span>
           </button>
           <button
             onClick={handleLogout}
-            className="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors border border-slate-700"
+            className="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors border border-slate-700"
           >
-            <LogOut className="w-4 h-4" />
+            <LogOut className="w-3.5 h-3.5" />
             <span>লগআউট</span>
           </button>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 border-b border-slate-200 text-xs font-semibold">
+      <div className="flex items-center gap-1 sm:gap-2 border-b border-slate-200 text-xs font-semibold overflow-x-auto">
+        <button
+          onClick={() => setActiveTab('progress')}
+          className={`pb-3 px-3 sm:px-4 border-b-2 transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+            activeTab === 'progress' ? 'border-[#001f3f] text-[#001f3f] font-bold' : 'border-transparent text-slate-500 hover:text-slate-800'
+          }`}
+        >
+          <TrendingUp className="w-3.5 h-3.5 text-[#d4af37]" />
+          <span>ক্যারিয়ার ও প্রশিক্ষণ অগ্রগতি (Member Progress)</span>
+        </button>
         <button
           onClick={() => setActiveTab('profile')}
-          className={`pb-3 px-4 border-b-2 transition-colors ${
+          className={`pb-3 px-3 sm:px-4 border-b-2 transition-colors whitespace-nowrap ${
             activeTab === 'profile' ? 'border-blue-950 text-blue-950 font-bold' : 'border-transparent text-slate-500 hover:text-slate-800'
           }`}
         >
@@ -195,7 +219,7 @@ export const MemberPortalView: React.FC<MemberPortalViewProps> = ({
         </button>
         <button
           onClick={() => setActiveTab('fees')}
-          className={`pb-3 px-4 border-b-2 transition-colors ${
+          className={`pb-3 px-3 sm:px-4 border-b-2 transition-colors whitespace-nowrap ${
             activeTab === 'fees' ? 'border-blue-950 text-blue-950 font-bold' : 'border-transparent text-slate-500 hover:text-slate-800'
           }`}
         >
@@ -203,7 +227,7 @@ export const MemberPortalView: React.FC<MemberPortalViewProps> = ({
         </button>
         <button
           onClick={() => setActiveTab('card')}
-          className={`pb-3 px-4 border-b-2 transition-colors ${
+          className={`pb-3 px-3 sm:px-4 border-b-2 transition-colors whitespace-nowrap ${
             activeTab === 'card' ? 'border-blue-950 text-blue-950 font-bold' : 'border-transparent text-slate-500 hover:text-slate-800'
           }`}
         >
@@ -211,13 +235,18 @@ export const MemberPortalView: React.FC<MemberPortalViewProps> = ({
         </button>
         <button
           onClick={() => setActiveTab('service')}
-          className={`pb-3 px-4 border-b-2 transition-colors ${
+          className={`pb-3 px-3 sm:px-4 border-b-2 transition-colors whitespace-nowrap ${
             activeTab === 'service' ? 'border-blue-950 text-blue-950 font-bold' : 'border-transparent text-slate-500 hover:text-slate-800'
           }`}
         >
           লাইসেন্স নবায়ন ট্র্যাকিং
         </button>
       </div>
+
+      {/* Tab: Member Progress Dashboard (Recharts Visualizations) */}
+      {activeTab === 'progress' && (
+        <MemberProgressDashboard member={loggedInMember} />
+      )}
 
       {/* Tab 1: Profile */}
       {activeTab === 'profile' && (
@@ -276,6 +305,26 @@ export const MemberPortalView: React.FC<MemberPortalViewProps> = ({
               <span className="text-slate-400 block text-[11px]">জরুরি যোগাযোগ:</span>
               <span className="font-semibold text-slate-800 text-sm">{loggedInMember.emergencyContact.name} ({loggedInMember.emergencyContact.phone})</span>
             </div>
+          </div>
+
+          {/* Quick Progress Banner within Profile */}
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-slate-900 to-blue-950 text-white flex flex-col sm:flex-row items-center justify-between gap-4 border border-blue-900 shadow-md">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-400/20 text-[#d4af37] flex items-center justify-center shrink-0 border border-[#d4af37]/30">
+                <TrendingUp className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-white">পেশাগত ক্যারিয়ার অগ্রগতি ও প্রশিক্ষণ মেট্রিক্স</h4>
+                <p className="text-[11px] text-slate-300">দক্ষতা রেডার চার্ট, লাইসেন্স নবায়ন ইতিহাস এবং কমিটি উপস্থিতির পূর্ণাঙ্গ চার্ট দেখুন</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setActiveTab('progress')}
+              className="px-3.5 py-1.5 bg-[#d4af37] hover:bg-amber-400 text-slate-950 text-xs font-bold rounded-xl flex items-center gap-1.5 transition-colors shrink-0 shadow"
+            >
+              <span>অগ্রগতি ড্যাশবোর্ডে যান</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
       )}

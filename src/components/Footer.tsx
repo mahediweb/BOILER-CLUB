@@ -10,6 +10,7 @@ import {
   Heart,
   FileText
 } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface FooterProps {
   setCurrentTab: (tab: string) => void;
@@ -59,20 +60,18 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentTab }) => {
           {/* Col 1: Organization Profile */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-900 border border-amber-400 flex items-center justify-center">
-                <Flame className="w-5 h-5 text-amber-400" />
-              </div>
+              <Logo size="md" />
               <div>
                 <h3 className="text-base font-bold text-white">বাংলাদেশ বয়লার পরিচারক পরিষদ</h3>
-                <p className="text-xs text-amber-400">Bangladesh Boiler Operators Parishad</p>
+                <p className="text-xs text-[#d4af37]">Bangladesh Boiler Operators Parishad</p>
               </div>
             </div>
             <p className="text-xs leading-relaxed text-slate-400">
-              জাতীয় শিল্পে নিয়োজিত সকল ১ম, ২য় ও ৩য় শ্রেণির দক্ষ বয়লার পরিচারক এবং প্রকৌশলীদের ঐক্য, পেশাগত দক্ষতা বৃদ্ধি, কর্মক্ষেত্রে শতভাগ নিরাপত্তা নিশ্চিতকরণ ও অধিকার আদায়ে অঙ্গীকারবদ্ধ একমাত্র জাতীয় সংগঠন।
+              শিল্পে নিয়োজিত সকল ১ম, ২য় ও ৩য় শ্রেণির দক্ষ বয়লার পরিচারক এবং প্রকৌশলীদের ঐক্য, পেশাগত দক্ষতা বৃদ্ধি, কর্মক্ষেত্রে নিরাপত্তা নিশ্চিতকরণ ও অধিকার রক্ষায় অঙ্গীকারবদ্ধ পেশাজীবী সংগঠন।
             </p>
             <div className="pt-2 flex items-center gap-2 text-xs text-slate-400">
               <Award className="w-4 h-4 text-amber-400" />
-              <span>সরকারি নিবন্ধন নং: বিওপি/২০১৬/৮৮</span>
+              <span>নিবন্ধন নং: বিওপি/২০১৬/৮৮</span>
             </div>
           </div>
 
@@ -120,10 +119,10 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentTab }) => {
             </ul>
           </div>
 
-          {/* Col 3: Government & Regulatory Portals */}
+          {/* Col 3: Regulatory & Technical Portals */}
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-l-2 border-amber-500 pl-2">
-              সরকারি ও প্রযুক্তিগত পোর্টাল
+              প্রাসঙ্গিক ও প্রযুক্তিগত পোর্টাল
             </h4>
             <ul className="space-y-2 text-xs text-slate-300">
               <li>

@@ -32,6 +32,9 @@ export interface Member {
   boilerClass: BoilerClass;
   licenseIssueDate?: string;
   joiningDate?: string;
+  applicationDate?: string;
+  approvalDate?: string;
+  lastRenewalDate?: string;
   membershipType: MemberType;
   status: MemberStatus;
   committeePosition?: string;

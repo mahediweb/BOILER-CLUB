@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import { Logo } from './Logo';
 
 interface ReportExportModalProps {
   isOpen: boolean;
@@ -402,19 +403,24 @@ export const ReportExportModal: React.FC<ReportExportModalProps> = ({
           >
             {/* 1. Official Letterhead */}
             <div className="border-b-2 border-[#001f3f] pb-4">
-              <div className="text-center space-y-1">
-                <div className="inline-block bg-slate-100 text-slate-700 text-[10px] font-bold px-3 py-0.5 rounded-full border border-slate-300 uppercase tracking-wider mb-1">
-                  গণপ্রজাতন্ত্রী বাংলাদেশ সরকার অনুমোদিত • সরকারি নিবন্ধন নং: বিওপি/২০১৬/৮৮
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-center sm:text-left">
+                <div className="shrink-0">
+                  <Logo size="lg" className="w-16 h-16 sm:w-20 sm:h-20" />
                 </div>
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#001f3f] tracking-tight">
-                  বাংলাদেশ বয়লার পরিচারক পরিষদ
-                </h1>
-                <p className="text-xs uppercase tracking-widest text-[#d4af37] font-bold">
-                  Bangladesh Boiler Operators Parishad
-                </p>
-                <p className="text-[11px] text-slate-500 pt-1">
-                  কেন্দ্রীয় কার্যালয়: প্লট-২৪, ব্লক-বি (৩য় তলা), তেজগাঁও শিল্প এলাকা, ঢাকা-১২০৮ | ফোন: ০২-৯৯৭৭৮৮, ০১৭১১-২৩৪৫৬৭ | ইমেইল: central@boiler-bd.org
-                </p>
+                <div className="space-y-1 text-center sm:text-left">
+                  <div className="inline-block bg-slate-100 text-slate-700 text-[10px] font-bold px-3 py-0.5 rounded-full border border-slate-300 uppercase tracking-wider mb-1">
+                    অরাজনৈতিক পেশাজীবী সংগঠন • নিবন্ধন নং: বিওপি/২০১৬/৮৮
+                  </div>
+                  <h1 className="text-2xl sm:text-3xl font-extrabold text-[#001f3f] tracking-tight">
+                    বাংলাদেশ বয়লার পরিচারক পরিষদ
+                  </h1>
+                  <p className="text-xs uppercase tracking-widest text-[#d4af37] font-bold">
+                    Bangladesh Boiler Operators Parishad
+                  </p>
+                  <p className="text-[11px] text-slate-500 pt-0.5">
+                    কেন্দ্রীয় কার্যালয়: প্লট-২৪, ব্লক-বি (৩য় তলা), তেজগাঁও শিল্প এলাকা, ঢাকা-১২০৮ | ফোন: ০২-৯৯৭৭৮৮, ০১৭১১-২৩৪৫৬৭
+                  </p>
+                </div>
               </div>
 
               {/* Reference & Generation Info Banner */}
@@ -588,7 +594,7 @@ export const ReportExportModal: React.FC<ReportExportModalProps> = ({
             <div className="bg-slate-50 p-3 rounded border border-slate-200 text-xs text-slate-700 space-y-1">
               <p className="font-bold text-slate-900">সনদ ও প্রত্যয়ন (Official Certification):</p>
               <p className="text-[11px] leading-relaxed text-slate-600">
-                এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, উপরোল্লিখিত সকল তথ্য বাংলাদেশ বয়লার পরিচারক পরিষদের সেন্ট্রাল ম্যানেজমেন্ট ডাটাবেজ এবং নিরীক্ষিত অভ্যন্তরীণ হিসাব বই হতে সংগৃহীত। এটি সরকারি অধিদপ্তর, প্রধান বয়লার পরিদর্শকের কার্যালয় এবং বার্ষিক সাধারণ সভায় উপস্থাপনের জন্য একটি বৈধ ও স্বীকৃত অনুলিপি।
+                এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, উপরোল্লিখিত সকল তথ্য বাংলাদেশ বয়লার পরিচারক পরিষদের সেন্ট্রাল ম্যানেজমেন্ট ডাটাবেজ এবং নিরীক্ষিত অভ্যন্তরীণ হিসাব বই হতে সংগৃহীত। এটি পরিষদের সাধারণ সভা ও প্রশাসনিক নথিপত্রে উপস্থাপনের জন্য একটি স্বীকৃত অনুলিপি।
               </p>
             </div>
 
